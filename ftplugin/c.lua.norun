@@ -1,0 +1,31 @@
+local util = require('lspconfig/util')
+
+local root_files = {
+  'compile_commands.json',
+  '.clangd',
+}
+
+-- Get the current buffer number
+local bufnr = vim.api.nvim_get_current_buf()
+
+-- Get the filename (full path) of the current buffer
+local filename = vim.api.nvim_buf_get_name(bufnr)
+
+local function get_root_dir(filename)
+    return util.root_pattern(unpack(root_files))(filename) or util.path.dirname(filename)
+end
+
+-- local paths = vim.fs.find(root_files, {upward = true, stop = vim.env.HOME})
+-- for val in paths do
+--    print(val)
+-- end
+-- local root_dir = vim.fs.dirname(paths)
+
+vim.lsp.start({
+    cmd = { 'clangd' },
+    filetypes = { 'c' },
+    root_dir = get_root_dir(filename),
+    offset_encoding = 'utf-32',
+    single_file_support = true,
+})
+
