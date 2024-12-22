@@ -2,7 +2,7 @@
 
 local function start_bash_lang_server()
 
-    local util = require('lspconfig/util')
+    --local util = require('lspconfig/util')
 --
 --    local root_files = {
 --        '.git',

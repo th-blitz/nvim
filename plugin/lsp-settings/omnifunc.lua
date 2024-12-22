@@ -12,7 +12,7 @@ local file_types_to_extensions = {
     dockerfile = 'dockerfile'
 }
 
-local is_active = false
+local is_active = true
 
 local function set_autocomplete(file_type, group_name)
 
@@ -72,4 +72,15 @@ vim.api.nvim_set_keymap('i', '<CR>', 'pumvisible() ? "\\<C-y>" : "\\<CR>"', { no
 vim.api.nvim_create_user_command("ToggleAutoCompletionGroup", toggle_autogroup, {})
 
 toggle_autogroup()
+
+-- Customize the appearance of the completion menu in Lua with Kanagawa theme
+-- vim.api.nvim_set_hl(0, 'Pmenu', { bg = '#16161D', fg = '#DCD7BA' })  -- Dark background with light text (matches Kanagawa's style)
+-- vim.api.nvim_set_hl(0, 'PmenuKind', { bg = '#1F1F28', fg = '#DCD7BA' })  -- Dark background with light text (matches Kanagawa's style)
+-- 
+-- vim.api.nvim_set_hl(0, 'PmenuSel', { bg = '#2d4f67', fg = '#C8C093' })  -- Light highlight background and yellow text for selected item
+-- vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = '#16161D', fg = '#C8C093' })  -- Customize the scrollbar thumb (Kanagawa's accent color)
+-- 
+-- vim.api.nvim_set_hl(0, 'PmenuBorder', { bg = '#ffffff', fg = '#ffffff' })
+
+
 

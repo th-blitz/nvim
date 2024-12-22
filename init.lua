@@ -25,20 +25,12 @@ require'nvim-treesitter.configs'.setup {
 
     highlight = {
         enable = true,
-
         -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
         -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
         -- the name of the parser)
         -- list of language that will be disabled
-        disable = {  },
         -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-        disable = function(lang, buf)
-            local max_filesize = 100 * 1024 -- 100 KB
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-                return true
-            end
-        end,
+        disable = { "python" },
 
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -145,24 +137,25 @@ require('lualine').setup({
 
 -- toggle term;
 -- require("toggleterm").setup()
-require("telescope").setup {
-    defaults = {
-        case_sensitive = true,
-    }
-}
+--require("telescope").setup {
+--    defaults = {
+--        case_sensitive = true,
+--    }
+--}
 
 ----------------------------------------------------------------------------------------------------
 
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.g.netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
-vim.o.autoindent = true
-vim.o.smartindent = true
-vim.o.cindent = true
+vim.o.autoindent = false
+vim.o.smartindent = false
+vim.o.cindent = false
 
 vim.opt.wrap = true
 vim.o.splitright = true
@@ -273,7 +266,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }  -- Add other options yo
 
 vim.api.nvim_set_keymap('n', '<C-n>', ':lua vim.cmd("bnext")<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':lua vim.cmd("bprev")<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-f>', ':Explore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-j>', ':Rexplore<CR>', { noremap = true, silent = true })
 
 --- :NvimTreeToggle
 -- vim.api.nvim_set_keymap('n', '<C-t>', ':NvimTreeToggle<CR>', { noremap = true, silent = false })

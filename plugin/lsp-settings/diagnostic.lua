@@ -1,8 +1,10 @@
 -- Set diagnostic signs 
 vim.diagnostic.config({
-  virtual_text = false,
+  virtual_text = true,
   float = {
+    style = 'minimal',
     border = 'rounded',
+    source = 'always'
   },
   signs = {
     text = {
