@@ -1,7 +1,7 @@
 -- plugin/autocomplete.lua
 
 local group_name = "AutoCompletionGroup"
-local file_types = {'c', 'cpp', 'cuda', 'lua', 'sh', 'python', 'dockerfile'}
+local file_types = {'c', 'cpp', 'cuda', 'lua', 'sh', 'python', 'dockerfile', 'markdown' }
 local file_types_to_extensions = {
     lua = 'lua',
     c = 'c',
@@ -9,7 +9,8 @@ local file_types_to_extensions = {
     python = 'py',
     cuda = 'cu',
     sh = 'sh',
-    dockerfile = 'dockerfile'
+    dockerfile = 'dockerfile',
+    markdown = 'md'
 }
 
 local is_active = true

@@ -1,8 +1,6 @@
----------------------------------------------------------------------------------------------------
 -- Author Preetham Rakshith (c) 2024.
 -- github profile : github.com/th-blitz
 -- My personal nvim config file. 
-----------------------------------------------------------------------------------------------------
 
 
 -- from nvim-treesitter readme repo:
@@ -135,16 +133,7 @@ require('lualine').setup({
 
 })
 
--- toggle term;
--- require("toggleterm").setup()
---require("telescope").setup {
---    defaults = {
---        case_sensitive = true,
---    }
---}
-
-----------------------------------------------------------------------------------------------------
-
+-----------------------------------------
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.g.netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
@@ -153,16 +142,16 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
-vim.o.autoindent = false
-vim.o.smartindent = false
-vim.o.cindent = false
+vim.o.autoindent = true
+vim.o.smartindent = true
+vim.o.cindent = true
 
 vim.opt.wrap = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 
 vim.opt.path:append "**"
-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------
 -- source : https://toddknutson.bio/posts/how-to-enable-neovim-undo-backup-and-swap-files-when-switching-linux-groups/
 -- purpose of this block : To create backups, swap files and persistent undo capabilities for edited files in nvim.
 
@@ -199,7 +188,8 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
-----------------------------------------------------------------------------------------------------
+--------------------------------------------------
+
 -- lsp setup.
 -- https://vonheikemen.github.io/devlog/tools/neovim-lsp-client-guide/
 -- purpose of the script : Manage LSP.
@@ -260,8 +250,7 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }  -- Add other options yo
 -- set .sbatch files as `sh` filetype in nvim.
 -- vim.cmd('autocmd BufNewFile,BufRead *.sbatch set filetype=sh')
 
-----------------------------------------------------------------------------------------------------
-
+--------------------------------------------------
 -- Custome keybindings for most used plugins.
 
 vim.api.nvim_set_keymap('n', '<C-n>', ':lua vim.cmd("bnext")<CR>', { noremap = true, silent = true })
@@ -282,28 +271,24 @@ vim.api.nvim_set_keymap('n', '<Leader>ts', ':Telescope grep_string search_dirs=.
 --- :undotreeToggle
 vim.api.nvim_set_keymap('n', '<Leader>ut', ':UndotreeToggle<CR>', { noremap = true, silent = false })
 
---- :1ToggleTerm
-vim.api.nvim_set_keymap('n', '<Leader>tt', ':1ToggleTerm<CR>', { noremap = true, silent = false })
-
---- :2ToggleTerm
-vim.api.nvim_set_keymap('n', '<Leader>2tt', ':2ToggleTerm<CR>', { noremap = true, silent = false })
-
---- :3ToggleTerm
-vim.api.nvim_set_keymap('n', '<Leader>3tt', ':3ToggleTerm<CR>', { noremap = true, silent = false })
-
 --- :qa! 
 vim.api.nvim_set_keymap('n', '<Leader>qa', ':qa!<CR>', { noremap = true, silent = false })
 
 -- :w
 vim.api.nvim_set_keymap('n', '<Leader>s', ':w<CR>', { noremap = true, silent = false })
 
--- remap terminal esc. 
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = false })
+-- https://stackoverflow.com/questions/7413036/stopping-vim-from-removing-indentation-on-empty-lines
+-- handling disappearing indentation after a new line
+-- vim.cmd([[inoremap <CR> <CR>x<BS>]])
+-- vim.cmd([[nnoremap o ox<BS>]])
+-- vim.cmd([[nnoremap O Ox<BS>]])
+-- BUT READ THIS : https://stackoverflow.com/questions/70141010/transition-between-normal-mode-and-insert-mode-ignores-indentation-in-gvim
 
-----------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 -- vim.cmd("colorscheme spaceduck")
 
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 
+vim.o.scrolloff = 5
